@@ -12,7 +12,10 @@ import {
   TouchableOpacity,
   TextInput,
   ScrollView,
+  Animated
 } from "react-native"
+
+
 
 const Dev_Height = Dimensions.get('screen').height
 const Dev_Width = Dimensions.get('screen').width
@@ -26,11 +29,26 @@ const client = createClient('563492ad6f917000010000010f702841514f4d11b90c1c5cedb
 
 export default class HomeScreen extends React.Component{
 
+    slide = () => {
+    Animated.spring(this.state.x, {
+      toValue: 0,
+      useNativeDriver:"true",
+      speed:0.2
+    }).start();
+    this.setState({
+      visible: true,
+    });
+  };
+
     constructor(props){
         super(props);
         this.state = {
           activeIndex:1,
           carouselItems:[],
+          selectedIndex:1,
+          searchQuery:"",
+          visible: false,
+          x: new Animated.Value(-100),
           categories:[            
             {
               "title":"Food",
@@ -87,15 +105,20 @@ export default class HomeScreen extends React.Component{
               "img_url":"https://images.pexels.com/photos/2110951/pexels-photo-2110951.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
             },
           ]
-      }
-    //  this.FindImages("Dark")
+        }
     }
 
-    FindImages=(query)=>{
+    FindImages=()=>{
+      const query = "Landscapes"
       client.photos.search({ query , per_page: 10 }).then(photos => {
         this.setState({ carouselItems : photos })
         this.setState({ carouselItems : this.state.carouselItems['photos'] })
-      });
+      })
+    }
+
+    componentDidMount(){
+     this.slide()
+     this.FindImages()
     }
 
     _renderItemCatogories=({item,index})=>{
@@ -126,9 +149,12 @@ export default class HomeScreen extends React.Component{
   );  
 
     _renderItem=({item,index})=>(
-          <View style={{ height:"100%",width:"100%",borderRadius:15,justifyContent:"center",alignItems:"center"}} >
+          <TouchableOpacity style={{ height:"100%",width:"100%",borderRadius:15,justifyContent:"center",alignItems:"center"}} 
+            onPress={()=>this.props.navigation.navigate("ImageDisplay",{
+              "id":item["id"]
+            })}>
             <Image source={{uri:item['src']['medium']}} style={{height:"100%",width:"100%",borderRadius:15}}/>
-          </View>
+          </TouchableOpacity>
     )
 
 
@@ -142,16 +168,25 @@ export default class HomeScreen extends React.Component{
             style={styles.MainBackground_View}
             imageStyle={{height:"100%",width:"100%",borderBottomLeftRadius:20,borderBottomRightRadius:20}}>
             <View style={{height:"100%",width:"100%",alignItems:"center",paddingTop:StatusBar.currentHeight}}>
-              <View style={{height:"45%",width:"100%",justifyContent:"center",alignItems:"center",marginTop:"5%"}}>
+              <Animated.View style={{height:"45%",width:"100%",justifyContent:"center",alignItems:"center",marginTop:"5%",
+              transform: [{translateX:this.state.x}]              
+              }}>
                 <Text style={{fontSize:18,fontWeight:"bold",color:"#FFF"}}> Check Out All The High   </Text>
                 <Text style={{fontSize:18,fontWeight:"bold",color:"#FFF"}}> Quality Wallpaper's  </Text>
-              </View>
-              <View style={styles.SearchBox_Main_Style}>
-              <TextInput style={{height:"80%",width:"75%",marginLeft:"5%",color:"#FFF"}} placeholder="Search For Free Wallpaper" placeholderTextColor="gray" />
-                <TouchableOpacity style={{height:"80%",width:"15%",justifyContent:"center",alignItems:"center"}}>
+              </Animated.View>
+              <Animated.View style={{...styles.SearchBox_Main_Style,transform: [{translateX:this.state.x}]}}>
+              <TextInput 
+                style={{height:"80%",width:"75%",marginLeft:"5%",color:"#FFF"}} 
+                placeholder="Search For Free Wallpaper" 
+                placeholderTextColor="gray" 
+                value={this.state.searchQuery}
+                onChangeText={(value)=>this.setState({ searchQuery : value })}
+              />
+                <TouchableOpacity style={{height:"80%",width:"15%",justifyContent:"center",alignItems:"center"}} 
+                  onPress={()=>this.props.navigation.navigate("FullCatogery",{ "query" : this.state.searchQuery })}>
                   <Icon name="search1" color="#FFF" size={15}/>
                 </TouchableOpacity>
-              </View>
+              </Animated.View>
             </View>
           </ImageBackground>
 
@@ -168,8 +203,11 @@ export default class HomeScreen extends React.Component{
               itemWidth={Item_Width}
               renderItem={this._renderItem}
               bounces={true} 
-              firstItem={2}
-            />
+              keyExtractor={(item, index) => item.key}
+              activeSlideAlignment={"center"}
+              autoplay={true}
+              loop={true}
+          />
           </View>
 
 
@@ -178,7 +216,7 @@ export default class HomeScreen extends React.Component{
           </View>
 
           <View style={{height:"25%",width:"100%",justifyContent:"center",alignItems:"center"}}>
-	   <FlatList
+	        <FlatList
                 style={{
                 height:"100%",width:"93%"}}
                 data={this.state.categories}
