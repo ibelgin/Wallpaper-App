@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import HomeScreen from "./components/HomeScreen";
 import FullCatogeryScreen from "./components/FullScreen"
+import ImageDisplay from "./components/ImageDisplay"
 
 const Stack = createStackNavigator();
 
@@ -31,6 +32,14 @@ export default function App() {
         <Stack.Screen 
           name="FullCatogery" 
           component={FullCatogeryScreen} 
+          options={{
+            headerShown:false,
+          }}
+          />
+
+        <Stack.Screen 
+          name="ImageDisplay" 
+          component={ImageDisplay} 
           options={{
             headerShown:false,
           }}
