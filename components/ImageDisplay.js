@@ -13,10 +13,10 @@ import {
 } from "react-native"
  // 
 import { createClient } from 'pexels';
+import RNFetchBlob from 'rn-fetch-blob'
 
 const client = createClient('563492ad6f917000010000010f702841514f4d11b90c1c5cedbd07a5');
 import Icon from 'react-native-vector-icons/AntDesign';
-import WallPaperManager from 'react-native-wallpaper-manager';
 
 const Dev_Height = Dimensions.get('screen').height
 const Dev_Width = Dimensions.get('screen').width
@@ -37,10 +37,36 @@ export default class ImageDisplay extends React.Component{
   Findimage=()=>{
       this.setState({ isloading : true })
       client.photos.show({ id: this.state.id }).then(photo => {
-         this.setState({ image_uri : photo["src"]["portrait"] })
+         this.setState({ image_uri : photo["src"]["original"] })
          this.setState({ isloading : false })
       });
   }
+
+downloadImage(){
+   var date      = new Date();
+   var ext       = this.getExtention(this.state.image_uri);
+   ext = "."+ext[0];
+   const { config, fs } = RNFetchBlob ; 
+   let PictureDir = fs.dirs.PictureDir
+   let options = {
+   fileCache: true,
+    addAndroidDownloads : {
+      useDownloadManager : true,
+      notification : true,
+      path:  PictureDir + "/image_"+Math.floor(date.getTime() 
+          + date.getSeconds() / 2)+ext,
+     description : 'Image'
+      }
+   }
+    config(options).fetch('GET', this.state.image_uri).then((res) => {
+      Alert.alert("Download Success !");
+   });
+}
+
+getExtention(filename){
+    return (/[.]/.exec(filename)) ? /[^.]+$/.exec(filename) : 
+undefined;
+}
 
   render(){
     return(
@@ -65,9 +91,9 @@ export default class ImageDisplay extends React.Component{
           </View>
 
           <View style={{height:"70%",width:"100%",justifyContent:"flex-end",backgroundColor:"transparent",alignItems:"center"}}>
-            <TouchableOpacity onPress={()=>WallPaperManager.setWallPaper({uri: this.state.image_uri})}
+            <TouchableOpacity onPress={()=>this.downloadImage()}
              style={{height:"8%",width:"40%",borderRadius:15,backgroundColor:"rgba(225,225,225,0.9)",justifyContent:"center",alignItems:"center"}}>
-              <Text style={{color:"#121212",fontSize:16}}>APPLY</Text>
+              <Text style={{color:"#121212",fontSize:16}}>Download</Text>
             </TouchableOpacity>
           </View>
         </ImageBackground>
