@@ -32,7 +32,7 @@ const client = createClient('****');
 
 ## Sample Preview
 
-<img src="https://user-images.githubusercontent.com/61349423/102805483-49cff480-43e1-11eb-8d25-2f9a803f66ae.jpg" width="240" height="460"> <img src="https://user-images.githubusercontent.com/61349423/102805504-518f9900-43e1-11eb-94d5-22bcaae6550f.jpg" width="240" height="460"> <img src="https://user-images.githubusercontent.com/61349423/102805494-4dfc1200-43e1-11eb-98ff-b60564642405.jpg" width="240" height="460">
+<img src="https://user-images.githubusercontent.com/61349423/102805483-49cff480-43e1-11eb-8d25-2f9a803f66ae.jpg" width="240" height="480"> <img src="https://user-images.githubusercontent.com/61349423/102805504-518f9900-43e1-11eb-94d5-22bcaae6550f.jpg" width="240" height="480"> <img src="https://user-images.githubusercontent.com/61349423/102805494-4dfc1200-43e1-11eb-98ff-b60564642405.jpg" width="240" height="480">
 
 ## Authors
 
