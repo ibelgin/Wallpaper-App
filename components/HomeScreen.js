@@ -25,7 +25,7 @@ import Icon from "react-native-vector-icons/AntDesign"
 import Carousel from 'react-native-snap-carousel';
 
 import { createClient } from 'pexels';
-const client = createClient('563492ad6f917000010000010f702841514f4d11b90c1c5cedbd07a5');
+const client = createClient('****');
 
 export default class HomeScreen extends React.Component{
 
