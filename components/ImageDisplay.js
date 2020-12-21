@@ -15,7 +15,7 @@ import {
 import { createClient } from 'pexels';
 import RNFetchBlob from 'rn-fetch-blob'
 
-const client = createClient('563492ad6f917000010000010f702841514f4d11b90c1c5cedbd07a5');
+const client = createClient('***');
 import Icon from 'react-native-vector-icons/AntDesign';
 
 const Dev_Height = Dimensions.get('screen').height
