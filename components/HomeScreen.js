@@ -15,6 +15,8 @@ import {
   Animated
 } from "react-native"
 
+
+
 const Dev_Height = Dimensions.get('screen').height
 const Dev_Width = Dimensions.get('screen').width
 const Item_Width = Dev_Width-(0.6*Dev_Width)
