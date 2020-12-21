@@ -19,7 +19,7 @@ const Dev_Height = Dimensions.get('screen').height
 const Dev_Width = Dimensions.get('screen').width
 
 import { createClient } from 'pexels';
-const client = createClient('563492ad6f917000010000010f702841514f4d11b90c1c5cedbd07a5');
+const client = createClient('****');
 
 export default class FullScreen extends React.Component{
 
