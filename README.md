@@ -23,7 +23,6 @@ const client = createClient('****');
 ## Built With
 
 * React Native
-* Fetch
 * Pexel's
 
 ## Check Out My Youtube Channel
