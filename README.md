@@ -1,6 +1,6 @@
 # Wallpaper App
 
-### A Simple Wallpaper App In React Native
+### A Wallpaper App In React Native
 
 ### Installing
 
