@@ -14,7 +14,7 @@
 
 ## TODO 
 
-* Get ClientID From [Pexel](https://www.pexels.com/api/documentation/?language=javascript)
+* Get Client ID From [Pexel](https://www.pexels.com/api/documentation/?language=javascript)
 
 ```javascript
 const client = createClient('****');
