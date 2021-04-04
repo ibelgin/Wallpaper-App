@@ -39,7 +39,7 @@ const client = createClient('****');
 
 ## Problems ?
 
-* Contact Me At [Instagram - @reactnative.modules](https://www.instagram.com/reactnative.modules/)
+* Contact Me At [Instagram](https://www.instagram.com/letonations/)
 
 *  My [LinkedIn](https://www.linkedin.com/in/belgin-jarosh/)
 
