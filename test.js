@@ -4,53 +4,51 @@ import {
   Text,
   StyleSheet,
   Dimensions,
-  StatusBar,
+  SafeAreaView,
   Image,
   TextInput,
-TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
 
 const Dev_Height = Dimensions.get('window').height;
 const Dev_Width = Dimensions.get('window').width;
 
 export default class App extends React.Component {
+
   render() {
     return (
-      <View style={styles.container}>
-
-        <View style={styles.imagemainview}>
+      <SafeAreaView style={styles.container}>
+        <View style={styles.logomainview}>
           <Image
+            source={require('./assets/logo.png')}
             style={styles.image}
-            source={require('./assets/snack-icon.png')}
-            resizeMode="contain"></Image>
+            resizeMode="contain"
+          />
         </View>
 
         <View style={styles.textinputmainview}>
           <TextInput
             style={styles.textinput}
-            placeholder="Phone Number ot Email ID or User Name"
-          />
-        </View>
-        
-        <View style={styles.textinputmainview}>
-          <TextInput
-            style={styles.textinput}
-            placeholder="Password"
+            placeholder="Phone Number, Username or Email "
           />
         </View>
 
-        <View style={styles.forgottextmainview}>
+        <View style={styles.textinputmainview}>
+          <TextInput style={styles.textinput} placeholder="Password" />
+        </View>
+
+        <View style={styles.forgotpasswordview}>
           <TouchableOpacity>
-            <Text style={styles.forgettext}>Forgot Password </Text>
+            <Text style={styles.forgotpasstext}>Forgot Password ?</Text>
           </TouchableOpacity>
         </View>
 
-        <View style={styles.buttonmainview}>
+        <View style={styles.buttonview}>
           <TouchableOpacity style={styles.buttontouch}>
-            <Text style={styles.loginin}>Login In</Text>
+            <Text style={styles.logintext}>Login</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </SafeAreaView>
     );
   }
 }
@@ -61,56 +59,63 @@ const styles = StyleSheet.create({
     width: Dev_Width,
     backgroundColor: '#FFF',
   },
+  helloworld: {
+    fontSize: 40,
+    color: 'red',
+  },
   image: {
-    height: '40%',
+    height: '80%',
     width: '100%',
   },
-  imagemainview: {
-    height: '30%',
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  textinputmainview: {
+  logomainview: {
     height: '15%',
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
   },
+  textinputmainview: {
+    height: '10%',
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   textinput: {
-    height: '60%',
+    height: '80%',
     width: '90%',
-    borderWidth: 2,
-    borderColor: '#E2E3E3',
+    borderWidth: 1,
+    borderColor: '#E4E5E5',
     borderRadius: 10,
+    backgroundColor: '#FAFAFA',
     paddingHorizontal: 10,
   },
-  forgottextmainview:{
-    height:"10%",
-    width:"100%",
-    justifyContent:"center"
+  forgotpasswordview: {
+    height: '10%',
+    width: '100%',
+    justifyContent: 'center',
   },
-  forgettext:{
-    fontSize:13,
-    color:"#0098FF",
-    marginLeft:"50%"
+  forgotpasstext: {
+    fontSize: 15,
+    color: '#009AFF',
+    justifyContent: 'center',
+    marginLeft: '60%',
   },
-  buttonmainview:{
-    height:"13%",
-    width:"100%",
-    justifyContent:'center',
-    alignItems:'center'
+  buttonview: {
+    height: '10%',
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  buttontouch:{
-    height:"80%",
-    width:"90%",
-    backgroundColor:"#00CEFF",
-    borderRadius:5,
-    alignItems:"center",
-    justifyContent:"center"
+  buttontouch: {
+    height: '80%',
+    width: '90%',
+    backgroundColor: '#00CEFF',
+    borderRadius:10,
+    justifyContent:"center",
+    alignItems: 'center',
   },
-  loginin:{
+  logintext:{
+    fontSize:16,
     color:"#FFF",
-    fontSize:18
+    fontWeight:"bold",
   }
 });
