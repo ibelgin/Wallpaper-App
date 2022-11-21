@@ -23,7 +23,7 @@ const client = createClient('****');
 ## Built With
 
 * React Native
-* Pexel's
+* Pexel's API
 
 ## Sample Preview
 
