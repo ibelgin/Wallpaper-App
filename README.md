@@ -31,11 +31,11 @@ const client = createClient('****');
 
 ## Authors
 
-* **Belgin Android** - *All Works* - [Belgin Android](https://github.com/Belgin-Android)
+* **Belgin** - *All Works* - [Belgin](https://github.com/ibelgin)
 
 ## Problems ?
 
-* Contact Me At [Instagram](https://www.instagram.com/letonations/)
+* Contact Me At [Instagram](https://www.instagram.com/reactnative.modules/)
 
 *  My [LinkedIn](https://www.linkedin.com/in/belgin-jarosh/)
 
