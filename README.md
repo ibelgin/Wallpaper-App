@@ -1,8 +1,8 @@
 # Wallpaper App
 
-## A Wallpaper App In React Native
+## Wallpaper App In React Native
 
-### Installing
+### installing
 
 > Clone This Repo To Your PC 
 
